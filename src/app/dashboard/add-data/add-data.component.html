@@ -1,11 +1,69 @@
 <form [formGroup]="addChildForm" (ngSubmit)="onSubmit()">
     <h2>Ihr Kind anmelden!</h2>
-    <input placeholder="Name" type="input" formControlName="name"><br />
-    <input placeholder="Geburtsdatum" type="date" formControlName="birthDate"><br />
-    <select formControlName="kindergardenId">
-        <option value="" disabled>Bitte auswählen</option>
-        <option *ngFor="let kindergarden of storeService.kindergardens" [ngValue]="kindergarden.id">
-            {{kindergarden.name}}, {{kindergarden.address}}</option>
-    </select>
-    <button type="submit">Erfassen</button>
-</form>
+
+    <mat-form-field class="input-width">
+        <mat-label>Name</mat-label>
+        <mat-hint>Vorname/ Nachname</mat-hint>
+        <input matInput placeholder="Name Kind" formControlName="name">
+        <mat-error *ngIf="addChildForm.get('name').hasError">
+            Bitte Name angeben
+        </mat-error>
+        <mat-error *ngIf="addChildForm.get('name').hasError('minlength')">
+            Name muss mindestens 2 Zeichen lang sein
+          </mat-error>
+    </mat-form-field><br />
+
+    <mat-form-field class="input-width">
+        <mat-label>Geburtsdatum</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="addChildForm.get('birthDate').hasError('required')">
+            Bitte Geburtsdatum angeben
+        </mat-error>
+    </mat-form-field><br />
+    
+    <mat-form-field class="input-width">
+        <mat-label>Kindergarten</mat-label>
+        <mat-select formControlName="kindergardenId">
+            <mat-option value="" disabled>Bitte auswählen</mat-option>
+            <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+                {{kindergarden.name}}, {{kindergarden.address}}
+                <mat-divider></mat-divider>
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addChildForm.get('kindergardenId').hasError('required')">
+            Bitte Kindergarten wählen
+        </mat-error>
+    </mat-form-field><br />
+
+    <div *ngIf="checkValidInput()">
+        <button mat-flat-button color="primary" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="input-width">
+            Erfassen
+        </button>  
+    </div>
+    <div *ngIf="!checkValidInput()">
+        <button mat-stroked-button color="link" type="submit" class="input-width">
+            Erfassen
+    </button> 
+    </div>
+
+</form>    
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Anmeldung Erfolgreich !</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Das Kind wurde erfolgreich zur Liste hinzugefügt.
+        </div>
+        <div class="modal-footer">
+          <button type="button" mat-stroked-button color="link" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>

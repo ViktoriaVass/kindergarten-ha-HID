@@ -14,19 +14,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.backendService.getKindergardens();
-
-    // function sum(a: number, b: number) {
-    //   return a + b;
-    // }
-    // var result = sum(1, 2); // result = 3
-    // console.log(result);
-
-    // var result = 0;
-
-    // setTimeout(function () {
-    //   result = sum(1, 2);
-    // }, 2000);
-
-    // console.log(result);
     }
 }
