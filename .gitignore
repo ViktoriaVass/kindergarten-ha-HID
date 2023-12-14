@@ -15,6 +15,12 @@ bower_components/
 
 # IDEs and editors
 .idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # misc
 .sass-cache/
@@ -34,6 +40,7 @@ e2e/*.map
 
 # System Files
 .DS_Store/
+Thumbs.db
 
 ### VisualStudioCode ###
 .vscode/*
@@ -53,5 +60,14 @@ e2e/*.map
 # Ignore all local history of files
 .history
 .ionide
+
+# Miscellaneous
+.angular
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,angular
