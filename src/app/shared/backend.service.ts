@@ -26,13 +26,23 @@ export class BackendService {
     });
   }
 
-  public getChildren(page: number) {
+  public getChildren(page: number): Promise<ChildResponse[]> {
     const url = `http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${this.childrenPerPage}`;
-    this.http.get<ChildResponse[]>(url, { observe: 'response' }).subscribe(data => {
-      this.storeService.children = data.body!;
-      this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
+  
+    return new Promise<ChildResponse[]>((resolve, reject) => {
+      this.http.get<ChildResponse[]>(url, { observe: 'response' }).subscribe(
+        (data) => {
+          this.storeService.children = data.body!;
+          this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
+          resolve(data.body!);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   }
+  
   
 
   public addChildData(child: Child, page:  number) {

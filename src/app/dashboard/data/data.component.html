@@ -1,26 +1,24 @@
-<mat-table [dataSource]="backendService.storeService.children" matSort>
-
-    <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </mat-header-cell>
-      <mat-cell *matCellDef="let child"> 
-        <ng-container *ngIf="column.field === 'abmelden'">
-            <button mat-button (click)="cancelRegistration(child.id)">Kind abmelden</button>
-          </ng-container>
-          <ng-container *ngIf="column.field !== 'abmelden'">
-            {{ getCellValue(column, child) }}
-          </ng-container>
+<mat-table [dataSource]="dataSource" matSort #sort="matSort" (matSortChange)="sortData($event)">
+  <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </mat-header-cell>
+    <mat-cell *matCellDef="let child"> 
+      <ng-container *ngIf="column.field === 'abmelden'">
+        <button mat-button (click)="cancelRegistration(child.id)">Kind abmelden</button>
+      </ng-container>
+      <ng-container *ngIf="column.field !== 'abmelden'">
+        {{ getCellValue(column, child) }}
+      </ng-container>
     </mat-cell>
-    </ng-container>
-  
-    <mat-header-row *matHeaderRowDef="columnFields"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: columnFields"></mat-row>
-  </mat-table>
-  
-  <mat-paginator 
-  [length]="backendService.storeService.childrenTotalCount" 
-  [pageSize]="pageSize" 
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnFields"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnFields"></mat-row>
+</mat-table>
+
+<mat-paginator 
+  [length]="pageEvent.length" 
+  [pageSize]="pageEvent.pageSize" 
   [pageSizeOptions]="pageSizeOptions"
-  (page)="changePageSize($event); 
-  pageEvent = $event; backendService.getChildren(pageEvent.pageIndex + 1)"
+  (page)="changePageSize($event)"
   (pageSizeChange)="changePageSize($event)">
 </mat-paginator>

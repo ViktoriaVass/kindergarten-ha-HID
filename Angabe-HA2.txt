@@ -1,0 +1,33 @@
+Versetzt euch in die UX-Rolle und macht eine UX-Review 
+(siehe Einheit von Veronika) für eure Kindergartenapplikation 
+im aktuellen Stand. Findet mindestens 7 UX-Feedback-Punkte und 
+haltet diese schriftlich fest. 5 dieser UX-Feedbackpunkte müssen 
+ausprogrammiert und in der Kindergartenapplikation umgesetzt werden.
+
+Weiter müssen folgende Funktionalitäten in eurer Endabgabe der 
+Kindergartenapplikation integriert sein (Diese dürfen nicht als 
+UX-Feedback-Punkt genannt werden)
+
+1. Filter und Sortierung:
+    - Filter nach Kindergarten (Alle Kinder aus Kindergarten x)
+    - Sortierung nach Kindergarten und Name der Kinder (alphabetisch) 
+      und Anmeldedatum (aufsteigend und absteigend, bitte hierfür neue 
+      Spalte im Grid)
+2. Neue Seite mit Detailansicht zu jedem Kindergarten 
+   (Info zu Kindergarten + Bilder)
+3. Loading Spinner beim initialen Laden der Daten und beim Löschen einer 
+   Kindergartenanmeldung
+
+Es ist ein Textfile mit den UX-Feedbackpunkten und dem Link zum 
+Github-Repository abzugeben!
+
+
+Beurteil wird:
+
+x Vollständigkeit bei der Erfüllung der Anforderungen
+x Qualität des Codes
+    . Errors in der Console
+    . Lauffähigkeit der Applikation
+    . Lesbarkeit des Codes
+    . korrekte Anwendung von den erlernten Angular-Basics
+x Sinnhaftigkeit der UX-Feedback-Punkte
