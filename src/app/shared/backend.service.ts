@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Kindergarden } from './interfaces/Kindergarden';
 import { StoreService } from './store.service';
 import { Child, ChildResponse } from './interfaces/Child';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 @Injectable({
@@ -65,12 +64,14 @@ export class BackendService {
   public addChildData(child: Child, page:  number) {
     this.http.post('http://localhost:5000/childs', child).subscribe(_ => {
       this.getChildren(page);
+      this.dataUpdated.emit();
     })
   }
 
     public deleteChildData(childId: string, page: number) {
       this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_=> {
         this.getChildren(page);
+        this.dataUpdated.emit();
       })
     }
   }

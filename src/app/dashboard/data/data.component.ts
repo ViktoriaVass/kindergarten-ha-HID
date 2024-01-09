@@ -2,8 +2,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, View
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BackendService } from 'src/app/shared/backend.service';
+import { FilterService } from 'src/app/shared/filter.service';
 import { ChildResponse } from 'src/app/shared/interfaces/Child';
 import { StoreService } from 'src/app/shared/store.service';
+
 
 @Component({
   selector: 'app-data',
@@ -19,24 +21,46 @@ export class DataComponent implements OnInit {
   
   dataSource: MatTableDataSource<ChildResponse> = new MatTableDataSource<ChildResponse>([]);
   masterList: ChildResponse[] = [];
-  public isDataLoading: boolean = true;
 
   constructor(public backendService: BackendService, 
               public storeService: StoreService,
-              private cdr: ChangeDetectorRef) {}
+              private cdr: ChangeDetectorRef,
+              public filterService: FilterService ) {}
 
   ngOnInit(): void {
-    this.isDataLoading = true;
     this.dataSource = new MatTableDataSource<ChildResponse>([]);
     this.dataSource.sort = this.sort;
     this.fetchDataAndSetDataSource();
+    this.filterService.selectedKindergartenId$.subscribe((selectedKindergartenId) => {
+      this.applyKindergartenFilter(selectedKindergartenId);
+    });
+    this.backendService.dataUpdated.subscribe(() => {
+      this.fetchDataAndSetDataSource();
+    });
+  }
+
+  private applyKindergartenFilter(selectedKindergartenId: string | null): void {
+    if (!selectedKindergartenId) {
+      // No filter selected, show all data
+      this.masterList = this.storeService.children;
+    } else {
+      // Filter data based on the selected kindergarten
+      this.masterList = this.storeService.children.filter((child) => {
+        const selectedId = selectedKindergartenId ? +selectedKindergartenId : null;
+        
+        return child.kindergarden?.id === selectedId;
+      });
+    }
+
+    // Update the data source and trigger change detection
+    this.updateDataSource();
   }
 
   private fetchDataAndSetDataSource(): void {
     this.backendService.getAllChildren().then((data) => {
       this.masterList = data;
       this.updateDataSource();
-      this.isDataLoading = false;
+      this.storeService.isLoading = false;
     });
   }
 
@@ -60,6 +84,7 @@ export class DataComponent implements OnInit {
   }
 
   public cancelRegistration(childId: string) {
+    this.storeService.isLoading = true;
     console.log("Page Index: " + this.pageEvent.pageIndex + 1);
     this.backendService.deleteChildData(childId, this.pageEvent.pageIndex + 1);
   }
@@ -96,8 +121,6 @@ export class DataComponent implements OnInit {
 
     console.log("Value ChildrenPerPage = " + this.backendService.childrenPerPage);
   }
-  
-  
 
   getCellValue(column: any, child: any): any {
     if (column.field === 'kindergarden.name' || column.field === 'kindergarden.address') {

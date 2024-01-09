@@ -1,6 +1,9 @@
-<div class="table-container" [style.height.px]="isDataLoading ? 480 : 'auto'">
+<div class="table-container" [ngClass]="{'loading': storeService.isLoading}">
 
-  <mat-table [dataSource]="dataSource" matSort #sort="matSort" (matSortChange)="sortData($event)">
+    <app-filter-data></app-filter-data>
+
+  <div class="table-wrapper">
+    <mat-table [dataSource]="dataSource" matSort #sort="matSort" (matSortChange)="sortData($event)">
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
       <mat-header-cell *matHeaderCellDef>
         <ng-container *ngIf="column.sortable; else nonSortableHeader">
@@ -24,17 +27,18 @@
     <mat-row *matRowDef="let row; columns: columnFields"></mat-row>
   </mat-table>
 
-  <mat-paginator 
-    [length]="pageEvent.length" 
-    [pageSize]="pageEvent.pageSize" 
+  <mat-paginator class="paginatior-container"
+    [length]="pageEvent.length"
+    [pageSize]="pageEvent.pageSize"
     [pageSizeOptions]="pageSizeOptions"
     (page)="changePageSize($event)"
-    (pageSizeChange)="changePageSize($event)">
-  </mat-paginator>
+    (pageSizeChange)="changePageSize($event)"
+  ></mat-paginator>
 
   <div class="overlay" *ngIf="storeService.isLoading">
     <div class="loading-container">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
   </div>
+</div>
 </div>

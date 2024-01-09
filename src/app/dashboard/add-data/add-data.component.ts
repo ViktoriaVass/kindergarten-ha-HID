@@ -31,6 +31,7 @@ export class AddDataComponent implements OnInit{
       kindergardenId: ['', [Validators.required]],
       birthDate: [null, [Validators.required]]
     })
+    this.addChildForm.patchValue({ registrationDate: new Date() });
   }
 
   pageSize: number = this.backendService.childrenPerPage;
@@ -42,14 +43,20 @@ export class AddDataComponent implements OnInit{
 
   onSubmit() {
     if (this.addChildForm.valid) {
-      const rawDate: Date = this.addChildForm.value.birthDate;
-      const formattedDate: string = this.formatDate(rawDate);
-  
-      console.log(formattedDate);
+      this.storeService.isLoading = true;
+      const rawBirthDate: Date = this.addChildForm.value.birthDate;
+      const formattedBirthDate: string = this.formatDate(rawBirthDate);
+
+      const registrationDate: string = this.formatDate(new Date());
+
+      console.log(formattedBirthDate);
       console.log("Current page: " + this.currentPage);
       console.log("Page Index: " + this.pageEvent.pageIndex + 1);
 
-      this.backendService.addChildData({ ...this.addChildForm.value, birthDate: formattedDate }, this.currentPage);
+      this.backendService.addChildData({ 
+        ...this.addChildForm.value, 
+        birthDate: formattedBirthDate,
+        registrationDate}, this.currentPage);
       
     } else {
       console.log('Form validation failed. Please check the form for errors.');

@@ -25,7 +25,9 @@ import { CommonModule } from '@angular/common';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { MatSortModule} from '@angular/material/sort';
 import { LoadingSpinnerComponent } from './dashboard/loading-spinner/loading-spinner.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FilterDataComponent } from './dashboard/data/filter-data/filter-data.component'; 
+import { FilterService } from './shared/filter.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ButtonComponent,
     PaginationPipe,
     AboutPageComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    FilterDataComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSortModule,
     MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

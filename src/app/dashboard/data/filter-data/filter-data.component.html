@@ -1,0 +1,19 @@
+<div class="filter-container">
+    <mat-form-field class="input-width">
+      <mat-hint>Kinder nach Kindergarten filtern</mat-hint>
+      <mat-label>Bitte auswählen</mat-label>
+      <mat-select panelClass="filter-width" [(ngModel)]="selectedKindergartenId" (ngModelChange)="applyFilter()">
+        <mat-option *ngFor="let kindergarden of storeService.kindergarden" [value]="kindergarden.id" class="filter-width">
+          {{kindergarden.name}}, {{kindergarden.address}}
+          <mat-divider></mat-divider>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <div class="button-container" *ngIf="selectedKindergartenId !== null">
+      <button mat-raised-button class="button-width" (click)="deleteFilter()">
+        Filter zurücksetzen
+      </button>
+    </div>
+  </div>
+  
