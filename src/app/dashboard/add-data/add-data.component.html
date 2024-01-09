@@ -28,7 +28,7 @@
         <mat-label>Kindergarten</mat-label>
         <mat-select formControlName="kindergardenId">
             <mat-option value="" disabled>Bitte auswählen</mat-option>
-            <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+            <mat-option *ngFor="let kindergarden of storeService.kindergarden" [value]="kindergarden.id">
                 {{kindergarden.name}}, {{kindergarden.address}}
                 <mat-divider></mat-divider>
             </mat-option>

@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BackendService } from 'src/app/shared/backend.service';
-import { StoreService } from 'src/app/shared/store.service';
-import { ChangeDetectorRef } from '@angular/core';
 import { ChildResponse } from 'src/app/shared/interfaces/Child';
+import { StoreService } from 'src/app/shared/store.service';
 
 @Component({
   selector: 'app-data',
@@ -20,12 +19,14 @@ export class DataComponent implements OnInit {
   
   dataSource: MatTableDataSource<ChildResponse> = new MatTableDataSource<ChildResponse>([]);
   masterList: ChildResponse[] = [];
+  public isDataLoading: boolean = true;
 
   constructor(public backendService: BackendService, 
               public storeService: StoreService,
               private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.isDataLoading = true;
     this.dataSource = new MatTableDataSource<ChildResponse>([]);
     this.dataSource.sort = this.sort;
     this.fetchDataAndSetDataSource();
@@ -35,6 +36,7 @@ export class DataComponent implements OnInit {
     this.backendService.getAllChildren().then((data) => {
       this.masterList = data;
       this.updateDataSource();
+      this.isDataLoading = false;
     });
   }
 
@@ -76,12 +78,13 @@ export class DataComponent implements OnInit {
   }
 
   columns = [
-    { field: 'name', header: 'Name' },
-    { field: 'birthDate', header: 'Geburtsdatum' },
-    { field: 'age', header: 'Alter' },
-    { field: 'kindergardens.name', header: 'Kindergarten' },
-    { field: 'kindergardens.address', header: 'Kindergarten Adresse' },
-    { field: 'abmelden', header: 'Abmelden' },
+    { field: 'name', header: 'Name', sortable: true },
+    { field: 'birthDate', header: 'Geburtsdatum', sortable: true },
+    { field: 'age', header: 'Alter', sortable: true },
+    { field: 'registrationDate', header: 'Anmeldedatum', sortable: true },
+    { field: 'kindergarden.name', header: 'Kindergarten', sortable: true },
+    { field: 'kindergarden.address', header: 'Kindergarten Adresse', sortable: false },
+    { field: 'abmelden', header: 'Abmelden', sortable: false },
   ];
 
   changePageSize(event: any): void {
@@ -97,7 +100,7 @@ export class DataComponent implements OnInit {
   
 
   getCellValue(column: any, child: any): any {
-    if (column.field === 'kindergardens.name' || column.field === 'kindergardens.address') {
+    if (column.field === 'kindergarden.name' || column.field === 'kindergarden.address') {
       return child.kindergarden?.[column.field.split('.')[1]];
     } else if (column.field === 'age') {
       return this.getAge(child.birthDate);
@@ -117,47 +120,56 @@ export class DataComponent implements OnInit {
     return age;
   }
 
-
-
- sortData(event: any) {
-  if (event && event.active && event.direction) {
-    const sortDirection = event.direction;
-    const sortField = event.active;
-
-    // Sort the entire dataset
-    this.storeService.children.sort((a: any, b: any) => {
-      const valueA = this.getSortValue(a, sortField);
-      const valueB = this.getSortValue(b, sortField);
-
-      if (sortField === 'name' || sortField === 'kindergardens.name' || sortField === 'kindergardens.address') {
-        return sortDirection === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
-      } else {
-        return sortDirection === 'asc' ? valueA - valueB : valueB - valueA;
-      }
-    });
-
-    // Update the data source with sorted data
-    this.dataSource.data = this.storeService.children;
-
-    // Update the paginator properties
-    this.pageEvent.length = this.storeService.children.length;
-    this.pageEvent.pageIndex = 0; // Reset to the first page after sorting
-
-    // Trigger change detection
-    this.cdr.detectChanges();
-    this.updateDataSource();
+  sortData(event: any) {
+    if (event && event.active && event.direction) {
+      const sortDirection = event.direction;
+      const sortField = event.active;
+  
+      this.storeService.children.sort((a: any, b: any) => {
+        const valueA = this.getSortValue(a, sortField);
+        const valueB = this.getSortValue(b, sortField);
+  
+        if (sortField === 'name' || sortField === 'kindergarden.name' || sortField === 'kindergarden.address') {
+          return sortDirection === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
+        } else {
+          return sortDirection === 'asc' ? valueA - valueB : valueB - valueA;
+        }
+      });
+  
+      this.dataSource.data = this.storeService.children;
+  
+      this.pageEvent.length = this.storeService.children.length;
+      this.pageEvent.pageIndex = 0; 
+  
+      this.cdr.detectChanges();
+      this.updateDataSource();
+    }
   }
-}
   
   private getSortValue(item: any, sortField: string): any {
-    if (sortField === 'birthDate') {
-      return new Date(item[sortField]);
+    console.log('in get sortValue:', item, " - ", sortField);
+
+    const keys = sortField.split('.');
+    const value = this.getNestedValue(item, sortField.split('.'));
+    console.log("ItemValue in sV: " + value);
+  
+    if (sortField === 'birthDate' || sortField === 'registrationDate') {
+      return new Date(value);
     } else if (sortField === 'age') {
       return this.getAge(item.birthDate);
     } else {
-      return item[sortField];
+      return value;
     }
   }
-    
+  
+  private getNestedValue(item: any, keys: string[]): any {
+    return keys.reduce((value, key) => {
+      return value !== null && value !== undefined ? value[key] : null;
+    }, item);
+  }
+  
+  
+  
+  
   
 }

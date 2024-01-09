@@ -24,6 +24,8 @@ import { MatMenuModule} from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { MatSortModule} from '@angular/material/sort';
+import { LoadingSpinnerComponent } from './dashboard/loading-spinner/loading-spinner.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MatSortModule} from '@angular/material/sort';
     HeaderComponent,
     ButtonComponent,
     PaginationPipe,
-    AboutPageComponent
+    AboutPageComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { MatSortModule} from '@angular/material/sort';
     MatMenuModule,
     CommonModule,
     MatSortModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

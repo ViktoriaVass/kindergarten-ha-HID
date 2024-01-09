@@ -2,80 +2,93 @@
   "childs": [
     {
       "id": "_iL775j",
-      "name": "Nicole Fitsch 1",
+      "name": "Nicole Fitsch",
       "birthDate": "2021-07-04",
+      "registrationDate": "2022-07-29",
       "kindergardenId": 1
     },
     {
       "id": "_ij700m",
-      "name": "Melanie Hollunder 2",
+      "name": "Melanie Hollunder",
       "birthDate": "2020-07-04",
+      "registrationDate": "2022-01-12",
       "kindergardenId": 3
     },
     {
       "id": "_iL77oo",
-      "name": "Viktor Sachs 3",
+      "name": "Viktor Sachs",
       "birthDate": "2022-06-04",
+      "registrationDate": "2023-05-04",
       "kindergardenId": 4
     },
     {
       "id": "_iL790m",
-      "name": "Emily Nilson 4",
+      "name": "Emily Nilson",
       "birthDate": "2019-01-04",
+      "registrationDate": "2021-02-22",
       "kindergardenId": 2
     },
     {
       "id": "_iL790m",
-      "name": "Tom Reiner 5",
+      "name": "Tom Reiner",
       "birthDate": "2019-01-04",
+      "registrationDate": "2021-12-22",
       "kindergardenId": 2
     },
     {
       "id": "_iL790m",
-      "name": "Michael Mittner 6",
+      "name": "Michael Mittner",
       "birthDate": "2019-01-04",
+      "registrationDate": "2022-09-20",
       "kindergardenId": 2
     },
     {
       "id": "_iL790m",
-      "name": "Nikolaus Polarius 7",
+      "name": "Nikolaus Polarius",
       "birthDate": "2019-01-04",
+      "registrationDate": "2020-12-15",
       "kindergardenId": 2
     },
     {
-      "name": "Paulus Fensterl 8",
+      "name": "Paulus Fensterl",
       "kindergardenId": 2,
       "birthDate": "2023-09-28",
+      "registrationDate": "2024-01-05",
       "id": "9py_fwi"
     },
     {
-      "name": "Heidi aus den Bergen 9",
+      "name": "Heidi aus den Bergen",
       "kindergardenId": 2,
       "birthDate": "2023-10-05",
+      "registrationDate": "2024-01-01",
       "id": "hOHEFCv"
     },
     {
-      "name": "Traude Widmann 10",
+      "name": "Traude Widmann",
       "kindergardenId": 2,
-      "birthDate": "2023-10-05",
+      "birthDate": "2023-01-05",
+      "registrationDate": "2023-12-01",
       "id": "cu0_2Ad"
     },
     {
-      "name": "Heiner Kühlschrank 11",
+      "name": "Heiner Kühlschrank",
       "kindergardenId": 2,
       "birthDate": "2023-10-26",
+      "registrationDate": "2024-01-03",
       "id": "ip57WMS"
     },
     {
-      "name": "Nicole Witz 12",
+      "name": "Nicole Witz",
       "kindergardenId": 3,
       "birthDate": "2023-10-13",
+      "registrationDate": "2024-01-09",
       "id": "JmbNaBH"
     },
     {
-      "name": "Bastian Witsch 13",
+      "name": "Bastian Witsch",
       "kindergardenId": 3,
       "birthDate": "2023-10-13",
+      "registrationDate": "2023-11-15",
       "id": "hlQAqAD"
     }
   ],

@@ -19,10 +19,11 @@ export class BackendService {
   public dataUpdated = new EventEmitter<void>();
 
   constructor(private http: HttpClient, public storeService: StoreService) { }
+  
 
   public getKindergardens() {
     this.http.get<Kindergarden[]>('http://localhost:5000/kindergardens').subscribe(data => {
-      this.storeService.kindergardens = data;
+      this.storeService.kindergarden = data;
     });
   }
 
@@ -51,6 +52,7 @@ export class BackendService {
         (data) => {
           this.storeService.children = data.body!;
           this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
+          this.storeService.isLoading = false;
           resolve(data.body!);
         },
         (error) => {

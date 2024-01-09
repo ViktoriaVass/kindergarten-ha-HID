@@ -1,7 +1,38 @@
-button.active {
-    background-color: orange;
-}
+.table-container {
+    position: relative;
+    padding: 0 16px;  /* Adjust the padding as needed */
+  }
+  
+  .custom-row {
+    height: 80px;  /* Adjust the height as needed */
+  }
 
-.border-green {
-    border: 1px solid green;
-}
+  .mat-column-kindergarden-name {
+    min-width: 500px;
+  }
+
+  .mat-column-age {
+    max-width: 200px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(237, 237, 237, 0.477);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;  /* Ensure it takes full width of parent */
+    height: 100%; /* Ensure it takes full height of parent */
+  }
+  
+  .loading-container {
+    position: relative;  /* Ensure the loading container respects its parent's positioning */
+  }
+  
+  .center {
+    text-align: center;
+  }
+  
