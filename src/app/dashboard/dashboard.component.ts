@@ -11,9 +11,8 @@ export class DashboardComponent {
   public currentPage: number = 1;
   public showFilter = false;
 
+  constructor(public storeService: StoreService) { }
 
-  constructor(public storeService: StoreService) {}
-  
   receiveMessage(newPageCount: number) {
     this.currentPage = newPageCount;
   }
@@ -21,5 +20,4 @@ export class DashboardComponent {
   toggleButtonClicked(showFilter: boolean) {
     this.showFilter = showFilter;
   }
-
 }

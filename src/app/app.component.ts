@@ -10,9 +10,9 @@ import { BackendService } from './shared/backend.service';
 export class AppComponent implements OnInit {
   title = 'kindergardenApp';
 
-  constructor(private backendService: BackendService) {}
+  constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
     this.backendService.getAllKindergardens();
-    }
+  }
 }
