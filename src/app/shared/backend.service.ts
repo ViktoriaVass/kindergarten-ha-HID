@@ -20,10 +20,14 @@ export class BackendService {
   constructor(private http: HttpClient, public storeService: StoreService) { }
   
 
-  public getKindergardens() {
+  public getAllKindergardens() {
     this.http.get<Kindergarden[]>('http://localhost:5000/kindergardens').subscribe(data => {
       this.storeService.kindergarden = data;
     });
+  }
+
+  getKindergartenById(id: number) {
+    return this.storeService.kindergarden.find((k) => k.id === id);
   }
 
   public getChildren(page: number): Promise<ChildResponse[]> {

@@ -13,6 +13,6 @@ export class AppComponent implements OnInit {
   constructor(private backendService: BackendService) {}
 
   ngOnInit(): void {
-    this.backendService.getKindergardens();
+    this.backendService.getAllKindergardens();
     }
 }

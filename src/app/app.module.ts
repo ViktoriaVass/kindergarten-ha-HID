@@ -28,6 +28,8 @@ import { LoadingSpinnerComponent } from './dashboard/loading-spinner/loading-spi
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FilterDataComponent } from './dashboard/data/filter-data/filter-data.component'; 
 import { FilterService } from './shared/filter.service';
+import { KindergardenInfoComponent } from './kindergarden-info/kindergarden-info.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FilterService } from './shared/filter.service';
     PaginationPipe,
     AboutPageComponent,
     LoadingSpinnerComponent,
-    FilterDataComponent
+    FilterDataComponent,
+    KindergardenInfoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

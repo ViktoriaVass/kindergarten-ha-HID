@@ -8,3 +8,15 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: #f9f2eb;
 }
+
+footer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(237, 89, 63);
+    font-family: Helvetica;
+    color: #fff;
+    position: absolute;
+  bottom: 0;
+  }
