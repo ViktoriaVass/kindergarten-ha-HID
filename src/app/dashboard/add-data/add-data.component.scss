@@ -1,10 +1,23 @@
-.input-width {
-    width: 400pt;
-    margin: 20px;
-    margin-left: 60px;
-  }
+.row{
+  margin: 0;
+  width: 100%;
+  background-color: #f9c6d9;
+}
 
-h2 {
-    margin: 20px;
-    margin-left: 60px;
+.input-width {
+  width: 400pt;
+  margin: 10px;
+}
+
+.erfassen-btn{
+  margin-top: 225px;
+  width: 250px;
+}
+
+.col-md-3, .col-md-6 {
+  margin-top: 80px;
+}
+
+.anmelden-text{
+  margin-left: 60px;
 }

@@ -16,6 +16,7 @@ import { StoreService } from 'src/app/shared/store.service';
 export class DataComponent implements OnInit {
 
   @Input() currentPage!: number;
+  @Input() showFilter: boolean | undefined;
   @Output() selectPageEvent = new EventEmitter<number>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   

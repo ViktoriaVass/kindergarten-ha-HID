@@ -1,6 +1,5 @@
 <div class="table-container" [ngClass]="{'loading': storeService.isLoading}">
-
-    <app-filter-data></app-filter-data>
+    <app-filter-data *ngIf="showFilter"></app-filter-data>
 
   <div class="table-wrapper">
     <mat-table [dataSource]="dataSource" matSort #sort="matSort" (matSortChange)="sortData($event)">

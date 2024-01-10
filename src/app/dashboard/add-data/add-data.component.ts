@@ -43,6 +43,7 @@ export class AddDataComponent implements OnInit{
 
   onSubmit() {
     if (this.addChildForm.valid) {
+      console.log('In onSubmit');
       this.storeService.isLoading = true;
       const rawBirthDate: Date = this.addChildForm.value.birthDate;
       const formattedBirthDate: string = this.formatDate(rawBirthDate);

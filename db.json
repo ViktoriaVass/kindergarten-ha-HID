@@ -57,13 +57,6 @@
       "id": "9py_fwi"
     },
     {
-      "name": "Heidi aus den Bergen",
-      "kindergardenId": 2,
-      "birthDate": "2023-10-05",
-      "registrationDate": "2024-01-01",
-      "id": "hOHEFCv"
-    },
-    {
       "name": "Traude Widmann",
       "kindergardenId": 2,
       "birthDate": "2023-01-05",
@@ -90,6 +83,13 @@
       "birthDate": "2023-10-13",
       "registrationDate": "2023-11-15",
       "id": "hlQAqAD"
+    },
+    {
+      "name": "Arthur Abc",
+      "kindergardenId": 1,
+      "birthDate": "2023-10-03",
+      "registrationDate": "2024-01-10",
+      "id": "7TJyj9n"
     }
   ],
   "kindergardens": [

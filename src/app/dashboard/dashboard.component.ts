@@ -9,7 +9,7 @@ import { StoreService } from '../shared/store.service';
 })
 export class DashboardComponent {
   public currentPage: number = 1;
-  public showAddData = true;
+  public showFilter = false;
 
 
   constructor(public storeService: StoreService) {}
@@ -18,8 +18,8 @@ export class DashboardComponent {
     this.currentPage = newPageCount;
   }
 
-  toggleButtonClicked(showAddData: boolean) {
-    this.showAddData = showAddData;
+  toggleButtonClicked(showFilter: boolean) {
+    this.showFilter = showFilter;
   }
 
 }
