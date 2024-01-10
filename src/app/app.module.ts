@@ -11,18 +11,24 @@ import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './dashboard/button/button.component';
 import { PaginationPipe } from './dashboard/data/pagination.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatDividerModule} from '@angular/material/divider';
+import { MatButtonModule} from '@angular/material/button';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule} from '@angular/material/table';
+import { MatMenuModule} from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { MatSortModule} from '@angular/material/sort';
+import { LoadingSpinnerComponent } from './dashboard/loading-spinner/loading-spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FilterDataComponent } from './dashboard/data/filter-data/filter-data.component'; 
+import { FilterService } from './shared/filter.service';
+import { KindergardenInfoComponent } from './kindergarden-info/kindergarden-info.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,10 @@ import { AboutPageComponent } from './about-page/about-page.component';
     HeaderComponent,
     ButtonComponent,
     PaginationPipe,
-    AboutPageComponent
+    AboutPageComponent,
+    LoadingSpinnerComponent,
+    FilterDataComponent,
+    KindergardenInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +62,10 @@ import { AboutPageComponent } from './about-page/about-page.component';
     MatTableModule,
     MatMenuModule,
     CommonModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,11 +6,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
-  @Input() showAddData: boolean | undefined;
+  @Input() showFilter: boolean | undefined;
   @Output() toggleButtonClickEvent = new EventEmitter();
 
   toggleButtonClicked() {
-    this.toggleButtonClickEvent.emit(!this.showAddData);
+    this.toggleButtonClickEvent.emit(!this.showFilter);
   }
 
 }

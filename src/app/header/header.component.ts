@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreService } from '../shared/store.service';
+import { BackendService } from '../shared/backend.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public title: string = 'Kindergarden-App';
-  public imagePath: string = "./../assets/images/kindergarden.jpg";
 
-  constructor() { }
+  constructor(
+    public storeService: StoreService, 
+    public backendService: BackendService) {
+  }
 
   ngOnInit(): void {
   }

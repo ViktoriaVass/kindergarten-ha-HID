@@ -1,6 +1,13 @@
-<button mat-button [matMenuTriggerFor]="menu" class="menu">Menu</button><br/>
-<img width="500" class="banner" src={{imagePath}}><br/>
-<mat-menu #menu="matMenu" class="menu">
-  <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
-  <button mat-menu-item [routerLink]="['/about']">About</button>
-</mat-menu>
+<div class="banner-container">
+  <div class="menu-container">
+    <button mat-button class="about" [routerLink]="['/about']" routerLinkActive="active">About</button>
+    <button mat-button class="anmeldung" [routerLink]="['/dashboard']" routerLinkActive="active">Anmeldung</button>
+    <button mat-button [matMenuTriggerFor]="kindergarten" class="kindergarden" [routerLink]="['/kindergarten']" routerLinkActive="active">Kindergärten</button>
+    <mat-menu #kindergarten="matMenu" class="kindergarden">
+      <button class="kindergarden-buttons" mat-menu-item *ngFor="let kindergarden of storeService.kindergarden" [routerLink]="['/kindergarten', kindergarden.id]">
+        {{ kindergarden.name }}
+      </button>    
+    </mat-menu>
+  </div>
+</div>
+

@@ -1,12 +1,31 @@
-.flex {
-    display: flex;
+.menu-container{
+    margin-top: 12px;
+    margin-left: 60px;
 }
 
-.menu{
-padding-left: 20px;
-padding-top: 20px;
+.banner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #c7b65d;
+    height: 60px;
 }
 
-.banner{
-    padding-left: 20px;
-    }
+.kindergarden {
+    margin-left: 40px;
+}
+
+.active {
+    text-decoration:underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 3px;
+    text-decoration-color: rgba(237, 89, 63);
+  }
+
+  .kindergarden-buttons {
+    padding: 10px;
+}
+.anmeldung {
+    margin-left: 40px;
+}

@@ -7,5 +7,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./about-page.component.scss']
 })
 export class AboutPageComponent {
-
+  public imagePath: string = "./../assets/images/kindergarden.jpg";
 }

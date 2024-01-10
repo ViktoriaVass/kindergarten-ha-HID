@@ -1,26 +1,43 @@
-<mat-table [dataSource]="backendService.storeService.children" matSort>
+<div class="table-container" [ngClass]="{'loading': storeService.isLoading}">
+    <app-filter-data *ngIf="showFilter"></app-filter-data>
 
+  <div class="table-wrapper">
+    <mat-table [dataSource]="dataSource" matSort #sort="matSort" (matSortChange)="sortData($event)">
     <ng-container *ngFor="let column of columns" [matColumnDef]="column.field">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </mat-header-cell>
-      <mat-cell *matCellDef="let child"> 
-        <ng-container *ngIf="column.field === 'abmelden'">
-            <button mat-button (click)="cancelRegistration(child.id)">Kind abmelden</button>
-          </ng-container>
-          <ng-container *ngIf="column.field !== 'abmelden'">
-            {{ getCellValue(column, child) }}
-          </ng-container>
-    </mat-cell>
+      <mat-header-cell *matHeaderCellDef>
+        <ng-container *ngIf="column.sortable; else nonSortableHeader">
+          <div mat-sort-header>{{ column.header }}</div>
+        </ng-container>
+        <ng-template #nonSortableHeader>
+          {{ column.header }}
+        </ng-template>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let child" class="custom-row">
+        <ng-container *ngIf="column.field === 'abmelden'; else otherContent">
+          <button mat-button (click)="cancelRegistration(child.id)">Kind abmelden</button>
+        </ng-container>
+        <ng-template #otherContent>
+          {{ getCellValue(column, child) }}
+        </ng-template>
+      </mat-cell>
     </ng-container>
   
     <mat-header-row *matHeaderRowDef="columnFields"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnFields"></mat-row>
   </mat-table>
-  
-  <mat-paginator 
-  [length]="backendService.storeService.childrenTotalCount" 
-  [pageSize]="pageSize" 
-  [pageSizeOptions]="pageSizeOptions"
-  (page)="changePageSize($event); 
-  pageEvent = $event; backendService.getChildren(pageEvent.pageIndex + 1)"
-  (pageSizeChange)="changePageSize($event)">
-</mat-paginator>
+
+  <mat-paginator class="paginatior-container"
+    [length]="pageEvent.length"
+    [pageSize]="pageEvent.pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="changePageSize($event)"
+    (pageSizeChange)="changePageSize($event)"
+  ></mat-paginator>
+
+  <div class="overlay" *ngIf="storeService.isLoading">
+    <div class="loading-container">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+</div>
+</div>

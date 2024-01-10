@@ -1,0 +1,30 @@
+<div class="row">
+
+    <div class="col">
+<div *ngIf="kindergarten" class="kindergarden-info-container">
+    <h1><b>{{ kindergarten.name }}</b></h1>
+    <div class="address">
+        <h4><b>Adresse:</b></h4>
+        <h3>{{ kindergarten.address }}</h3>
+    </div>
+
+    <div class="betreiber">
+        <h4><b>Betreiber:</b></h4>
+        <h3>{{ kindergarten.betreiber }}</h3>
+    </div><br>
+
+    <div class="betreiber">
+        <h4><b>Über den Kindergarten:</b></h4><br>
+        <p>{{ kindergarten.description }}</p>
+    </div>
+
+  
+</div>
+</div>
+
+<div class="col">
+    <div *ngFor="let photoUrl of kindergarten.photos" class="photos">
+        <img width="500" [src]="photoUrl" alt="Kindergarten Photo">
+    </div>
+</div>
+</div>

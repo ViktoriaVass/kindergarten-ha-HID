@@ -3,4 +3,20 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #f9f2eb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footer {
+    margin-top: auto;
+    width: 100%;
+    background-color: rgba(237, 89, 63);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-family: Helvetica;
+  }
