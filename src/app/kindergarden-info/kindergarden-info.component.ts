@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './kindergarden-info.component.html',
   styleUrls: ['./kindergarden-info.component.scss']
 })
+
 export class KindergardenInfoComponent implements OnInit {
   kindergarten: any;
 

@@ -59,7 +59,6 @@ export class AddDataComponent implements OnInit {
         birthDate: formattedBirthDate,
         registrationDate
       }, this.currentPage);
-
     } else {
       console.log('Form validation failed. Please check the form for errors.');
     }

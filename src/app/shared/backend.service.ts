@@ -18,8 +18,7 @@ export class BackendService {
   public dataUpdated = new EventEmitter<void>();
 
   constructor(private http: HttpClient, public storeService: StoreService) { }
-
-
+  
   public getAllKindergardens() {
     this.http.get<Kindergarden[]>('http://localhost:5000/kindergardens').subscribe(data => {
       this.storeService.kindergarden = data;

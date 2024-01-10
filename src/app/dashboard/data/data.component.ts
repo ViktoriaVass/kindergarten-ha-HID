@@ -72,9 +72,7 @@ export class DataComponent implements OnInit {
     const startIndex = this.pageEvent.pageIndex * this.pageEvent.pageSize;
     const endIndex = startIndex + this.pageEvent.pageSize;
     this.dataSource.data = sortedData.slice(startIndex, endIndex);
-
     this.pageEvent.length = sortedData.length;
-
     this.cdr.detectChanges();
   }
 
@@ -111,7 +109,6 @@ export class DataComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.pageEvent.pageIndex = event.pageIndex;
     this.pageEvent.pageSize = event.pageSize;
-
     this.updateDataSource();
 
     console.log("Value ChildrenPerPage = " + this.backendService.childrenPerPage);
@@ -185,5 +182,4 @@ export class DataComponent implements OnInit {
       return value !== null && value !== undefined ? value[key] : null;
     }, item);
   }
-
 }

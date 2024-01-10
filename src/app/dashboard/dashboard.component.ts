@@ -13,6 +13,9 @@ export class DashboardComponent {
 
   constructor(public storeService: StoreService) { }
 
+
+  constructor(public storeService: StoreService) {}
+  
   receiveMessage(newPageCount: number) {
     this.currentPage = newPageCount;
   }
