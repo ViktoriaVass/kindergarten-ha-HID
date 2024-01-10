@@ -8,11 +8,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './kindergarden-info.component.html',
   styleUrls: ['./kindergarden-info.component.scss']
 })
-export class KindergardenInfoComponent implements OnInit{
+
+export class KindergardenInfoComponent implements OnInit {
   kindergarten: any;
 
-  constructor( 
-    public storeService: StoreService, 
+  constructor(
+    public storeService: StoreService,
     public backendService: BackendService,
     private route: ActivatedRoute,) {
   }

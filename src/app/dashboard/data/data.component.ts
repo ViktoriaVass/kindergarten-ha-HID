@@ -19,14 +19,14 @@ export class DataComponent implements OnInit {
   @Input() showFilter: boolean | undefined;
   @Output() selectPageEvent = new EventEmitter<number>();
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  
+
   dataSource: MatTableDataSource<ChildResponse> = new MatTableDataSource<ChildResponse>([]);
   masterList: ChildResponse[] = [];
 
-  constructor(public backendService: BackendService, 
-              public storeService: StoreService,
-              private cdr: ChangeDetectorRef,
-              public filterService: FilterService ) {}
+  constructor(public backendService: BackendService,
+    public storeService: StoreService,
+    private cdr: ChangeDetectorRef,
+    public filterService: FilterService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<ChildResponse>([]);
@@ -42,18 +42,16 @@ export class DataComponent implements OnInit {
 
   private applyKindergartenFilter(selectedKindergartenId: string | null): void {
     if (!selectedKindergartenId) {
-      // No filter selected, show all data
+      // Kein Filter - alles anzeigen
       this.masterList = this.storeService.children;
     } else {
-      // Filter data based on the selected kindergarten
+      // Filter gesetzt
       this.masterList = this.storeService.children.filter((child) => {
         const selectedId = selectedKindergartenId ? +selectedKindergartenId : null;
-        
+
         return child.kindergarden?.id === selectedId;
       });
     }
-
-    // Update the data source and trigger change detection
     this.updateDataSource();
   }
 
@@ -66,21 +64,15 @@ export class DataComponent implements OnInit {
   }
 
   private updateDataSource(): void {
-    // Apply sorting to master list
+
     const sortedData = this.masterList.slice().sort((a, b) => {
-      // Implement your custom sorting logic here
-      return 0; // Placeholder, replace with actual logic
+      return 0;
     });
 
-    // Apply pagination
     const startIndex = this.pageEvent.pageIndex * this.pageEvent.pageSize;
     const endIndex = startIndex + this.pageEvent.pageSize;
     this.dataSource.data = sortedData.slice(startIndex, endIndex);
-
-    // Update the paginator properties
     this.pageEvent.length = sortedData.length;
-
-    // Trigger change detection
     this.cdr.detectChanges();
   }
 
@@ -117,8 +109,7 @@ export class DataComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.pageEvent.pageIndex = event.pageIndex;
     this.pageEvent.pageSize = event.pageSize;
-
-    this.updateDataSource(); // Fetch data and update the data source
+    this.updateDataSource();
 
     console.log("Value ChildrenPerPage = " + this.backendService.childrenPerPage);
   }
@@ -148,35 +139,35 @@ export class DataComponent implements OnInit {
     if (event && event.active && event.direction) {
       const sortDirection = event.direction;
       const sortField = event.active;
-  
+
       this.storeService.children.sort((a: any, b: any) => {
         const valueA = this.getSortValue(a, sortField);
         const valueB = this.getSortValue(b, sortField);
-  
+
         if (sortField === 'name' || sortField === 'kindergarden.name' || sortField === 'kindergarden.address') {
           return sortDirection === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
         } else {
           return sortDirection === 'asc' ? valueA - valueB : valueB - valueA;
         }
       });
-  
+
       this.dataSource.data = this.storeService.children;
-  
+
       this.pageEvent.length = this.storeService.children.length;
-      this.pageEvent.pageIndex = 0; 
-  
+      this.pageEvent.pageIndex = 0;
+
       this.cdr.detectChanges();
       this.updateDataSource();
     }
   }
-  
+
   private getSortValue(item: any, sortField: string): any {
     console.log('in get sortValue:', item, " - ", sortField);
 
     const keys = sortField.split('.');
     const value = this.getNestedValue(item, sortField.split('.'));
     console.log("ItemValue in sV: " + value);
-  
+
     if (sortField === 'birthDate' || sortField === 'registrationDate') {
       return new Date(value);
     } else if (sortField === 'age') {
@@ -185,15 +176,10 @@ export class DataComponent implements OnInit {
       return value;
     }
   }
-  
+
   private getNestedValue(item: any, keys: string[]): any {
     return keys.reduce((value, key) => {
       return value !== null && value !== undefined ? value[key] : null;
     }, item);
   }
-  
-  
-  
-  
-  
 }

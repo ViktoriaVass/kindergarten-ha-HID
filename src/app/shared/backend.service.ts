@@ -19,7 +19,6 @@ export class BackendService {
 
   constructor(private http: HttpClient, public storeService: StoreService) { }
   
-
   public getAllKindergardens() {
     this.http.get<Kindergarden[]>('http://localhost:5000/kindergardens').subscribe(data => {
       this.storeService.kindergarden = data;
@@ -32,7 +31,7 @@ export class BackendService {
 
   public getChildren(page: number): Promise<ChildResponse[]> {
     const url = `http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${this.childrenPerPage}`;
-  
+
     return new Promise<ChildResponse[]>((resolve, reject) => {
       this.http.get<ChildResponse[]>(url, { observe: 'response' }).subscribe(
         (data) => {
@@ -46,10 +45,10 @@ export class BackendService {
       );
     });
   }
-  
+
   public getAllChildren(): Promise<ChildResponse[]> {
     const url = `http://localhost:5000/childs?_expand=kindergarden`;
-  
+
     return new Promise<ChildResponse[]>((resolve, reject) => {
       this.http.get<ChildResponse[]>(url, { observe: 'response' }).subscribe(
         (data) => {
@@ -65,17 +64,17 @@ export class BackendService {
     });
   }
 
-  public addChildData(child: Child, page:  number) {
+  public addChildData(child: Child, page: number) {
     this.http.post('http://localhost:5000/childs', child).subscribe(_ => {
       this.getChildren(page);
       this.dataUpdated.emit();
     })
   }
 
-    public deleteChildData(childId: string, page: number) {
-      this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_=> {
-        this.getChildren(page);
-        this.dataUpdated.emit();
-      })
-    }
+  public deleteChildData(childId: string, page: number) {
+    this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_ => {
+      this.getChildren(page);
+      this.dataUpdated.emit();
+    })
   }
+}

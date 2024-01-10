@@ -9,20 +9,19 @@ import { StoreService } from 'src/app/shared/store.service';
   styleUrls: ['./filter-data.component.scss']
 })
 export class FilterDataComponent {
-  constructor( public storeService: StoreService, 
+  constructor(public storeService: StoreService,
     public backendService: BackendService,
-    public filterServive: FilterService) {};
+    public filterServive: FilterService) { };
 
-    selectedKindergartenId: string | null = null;
+  selectedKindergartenId: string | null = null;
 
-    applyFilter(): void {
-      // Trigger the service to set the selected kindergarten ID
-      this.filterServive.setSelectedKindergartenId(this.selectedKindergartenId);
-    }
+  applyFilter(): void {
+    this.filterServive.setSelectedKindergartenId(this.selectedKindergartenId);
+  }
 
-    deleteFilter(): void{
-      this.selectedKindergartenId = null;
-      this.filterServive.setSelectedKindergartenId(this.selectedKindergartenId);
-    }
+  deleteFilter(): void {
+    this.selectedKindergartenId = null;
+    this.filterServive.setSelectedKindergartenId(this.selectedKindergartenId);
+  }
 
 }

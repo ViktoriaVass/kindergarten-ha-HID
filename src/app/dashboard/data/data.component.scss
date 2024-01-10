@@ -1,5 +1,5 @@
 .custom-row {
-  height: 80px; 
+  height: 80px;
 }
 
 .mat-column-kindergarden-name {
@@ -9,6 +9,7 @@
 .mat-column-age {
   max-width: 100px;
 }
+
 .filter-container {
   position: relative;
   padding-left: 60px;
@@ -40,7 +41,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Ensure the overlay is above the table and paginator */
+  z-index: 1;
+  /* Ensure the overlay is above the table and paginator */
 }
 
 .loading-container {
@@ -48,7 +50,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2; /* Ensure the loading container is above the overlay */
+  z-index: 2;
 }
 
 .center {
