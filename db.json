@@ -76,6 +76,13 @@
       "birthDate": "2023-10-13",
       "registrationDate": "2023-11-15",
       "id": "hlQAqAD"
+    },
+    {
+      "name": "Arthur Abc",
+      "kindergardenId": 1,
+      "birthDate": "2022-07-07",
+      "registrationDate": "2024-01-10",
+      "id": "tEzTY-l"
     }
   ],
   "kindergardens": [
