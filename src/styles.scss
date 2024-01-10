@@ -7,16 +7,16 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: #f9f2eb;
-}
-
-footer {
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 10px;
+    flex-direction: column;
+}
+.footer {
+    margin-top: auto;
+    width: 100%;
     background-color: rgba(237, 89, 63);
-    font-family: Helvetica;
     color: #fff;
-    position: absolute;
-  bottom: 0;
+    padding: 10px;
+    text-align: center;
+    font-family: Helvetica;
   }

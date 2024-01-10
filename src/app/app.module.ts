@@ -29,7 +29,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FilterDataComponent } from './dashboard/data/filter-data/filter-data.component'; 
 import { FilterService } from './shared/filter.service';
 import { KindergardenInfoComponent } from './kindergarden-info/kindergarden-info.component';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +42,7 @@ import { FooterComponent } from './footer/footer.component';
     AboutPageComponent,
     LoadingSpinnerComponent,
     FilterDataComponent,
-    KindergardenInfoComponent,
-    FooterComponent
+    KindergardenInfoComponent
   ],
   imports: [
     BrowserModule,
